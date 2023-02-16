@@ -24,14 +24,19 @@ final class SampleiOSAppTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        testEmptyListOfUsers()
+        passwordTestCases()
     }
     
-    func testEmptyListOfUsers() {
+    func passwordTestCases() {
         let viewModel = StorageViewModel()
         let password = "Abcd@12345"
         
         XCTAssertTrue(viewModel.isValidPassword(password: password))
+        XCTAssertFalse(viewModel.isValidPassword(password: "abc"))
+        XCTAssertFalse(viewModel.isValidPassword(password: "Abc"))
+        XCTAssertFalse(viewModel.isValidPassword(password: "Abcd@"))
+        XCTAssertFalse(viewModel.isValidPassword(password: "abcd@17676"))
+        XCTAssertFalse(viewModel.isValidPassword(password: ""))
     }
 
     func testPerformanceExample() throws {
